@@ -1,5 +1,5 @@
 <?php
-namespace DaVinci\DB;
+namespace TP2\DB;
 
 use PDO;
 
