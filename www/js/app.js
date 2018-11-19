@@ -61,8 +61,8 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
       url: '/publicaciones/:id',
       views: {
         'menu-publicaciones': {
-          templateUrl: 'templates/tabs-productos-detalle.html',
-          controller: 'ProductosDetalleCtrl'
+          templateUrl: 'template/detalle.html',
+          controller: 'detalleCtrl'
         }
       },
       data: {
@@ -74,7 +74,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     url: '/perfil',
     views: {
       'menu-perfil': {
-        templateUrl: 'templates/perfil.html',
+        templateUrl: 'template/perfil.html',
         controller: 'perfilCtrl'
       }
     },
