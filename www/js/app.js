@@ -81,6 +81,16 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     data: {
       requiresAuth: true
     }
+  })
+
+  .state('menu.login', {
+    url: '/login',
+    views: {
+      'menu-login': {
+        templateUrl: 'templates/login.html',
+        controller: 'loginCtrl'
+      }
+    }
   });
 
   $urlRouterProvider.otherwise('/menu/publicaciones');
