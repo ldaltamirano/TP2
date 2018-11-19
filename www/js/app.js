@@ -87,7 +87,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     url: '/login',
     views: {
       'menu-login': {
-        templateUrl: 'templates/login.html',
+        templateUrl: 'template/login.html',
         controller: 'loginCtrl'
       }
     }
