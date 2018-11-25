@@ -7,7 +7,7 @@ angular.module('redSocial.services')
 			userData 	= null;
 
 		function login(user) {
-			return $http.post(API_SERVER + '/login.php', user).then(function(response) {
+			return $http.post(API_SERVER + '/login', user).then(function(response) {
 				let responsePayload = response.data;
 
 				if(responsePayload.status == 1) {

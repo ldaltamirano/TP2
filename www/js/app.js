@@ -27,13 +27,13 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
 
   $stateProvider
 
-  /*.state('menu', {
+  .state('menu', {
     url: '/menu',
     abstract: true,
     templateUrl: 'template/menu.html'
   })
  
-  .state('menu.publicaciones', {
+  /*.state('menu.publicaciones', {
     url: '/publicaciones',
     views: {
       'menu-publicaciones': {
@@ -84,16 +84,16 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
   })*/
 
   .state('menu.login', {
-    url: '/login',
+    url: '/menu/login',
     views: {
       'menu-login': {
         templateUrl: 'template/login.html',
-        controller: 'loginCtrl'
+        controller: 'LoginCtrl'
       }
     }
   });
 
-  $urlRouterProvider.otherwise('/menu/login');
+  $urlRouterProvider.otherwise('/login');
 
 })
 

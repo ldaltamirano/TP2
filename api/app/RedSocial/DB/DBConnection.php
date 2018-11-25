@@ -1,5 +1,5 @@
 <?php
-namespace TP2\DB;
+namespace RedSocial\DB;
 
 use PDO;
 
@@ -16,7 +16,7 @@ class DBConnection
 	public static function getConnection()
 	{
 		if(is_null(self::$db)) {
-			$dsn = "mysql:host=" . self::$host . ":3308;dbname=" . self::$base . ";charset=utf8";
+			$dsn = "mysql:host=" . self::$host . ";dbname=" . self::$base . ";charset=utf8";
 			try {
 				self::$db = new PDO($dsn, self::$user, self::$pass);
 			} catch(Exception $e) {
