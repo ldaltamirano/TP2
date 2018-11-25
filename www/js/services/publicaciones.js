@@ -1,5 +1,5 @@
 angular.module('redSocial.services')
-.factory('publicaciones', [
+/*.factory('publicaciones', [
 	'$http',
 	'API_SERVER',
 	function($http, API_SERVER) {
@@ -15,4 +15,4 @@ angular.module('redSocial.services')
 			}
 		};
 	}
-]);
+]);*/

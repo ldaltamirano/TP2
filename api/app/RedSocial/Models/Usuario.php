@@ -67,7 +67,7 @@ class Usuario {
 /**
     * Devuelve el dato $userName del objeto usuario
     */
-   public function GetEmail() {
+   public function getEmail() {
        return $this->email;
    }
 

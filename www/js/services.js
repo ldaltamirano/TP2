@@ -1,4 +1,4 @@
 angular.module('redSocial.services', [])
-.controller('', function($scope) {
+/*.controller('', function($scope) {
 
-});
+});*/

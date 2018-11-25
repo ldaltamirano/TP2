@@ -9,9 +9,9 @@
 use Redsocial\Core\Route;
 
 Route::add('POST', '/login', 'AuthController@login');
-Route::add('GET', '/publicaciones', 'PublicacionesController@todos');
-Route::add('GET', '/publicaciones/{id}', 'PublicacionesController@detalle');
+//Route::add('GET', '/publicaciones', 'PublicacionesController@todos');
+//Route::add('GET', '/publicaciones/{id}', 'PublicacionesController@detalle');
 
-Route::add('POST', '/publicaciones', 'PublicacionesController@crear');
-Route::add('PUT', '/publicaciones/{id}', 'publicacionesController@editar');
-Route::add('DELETE', '/publicaciones/{id}', 'publicacionesController@eliminar');
+//Route::add('POST', '/publicaciones', 'PublicacionesController@crear');
+//Route::add('PUT', '/publicaciones/{id}', 'publicacionesController@editar');
+//Route::add('DELETE', '/publicaciones/{id}', 'publicacionesController@eliminar');

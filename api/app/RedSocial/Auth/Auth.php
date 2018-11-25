@@ -1,32 +1,102 @@
 <?php
-namespace DaVinci\Auth;
+namespace RedSocial\Auth;
 
-use TP2\Models\Usuario;
+use Lcobucci\JWT\Builder;
+use Lcobucci\JWT\Parser;
+use Lcobucci\JWT\ValidationData;
+use Lcobucci\JWT\Signer\Hmac\Sha256;
+use RedSocial\Models\Usuario;
 
 class Auth
 {
+	// En php 7.1+, las constantes pueden ser privadas, lo que sería más que recomendable
+	// para éstas dos. No las pongo así por si tienen un php desatualizado en sus máquinas.
+	const TOKEN_ISSUER = 'JulietaLucio';
+	const SIGNER_KEY = 'ASJHjnfkjasdfhnkasjdkasDHSDAS';
+
 	/**
 	 * Loguea al usuario. Retorna false si falla.
 	 *
 	 * @param string $usuario
 	 * @param string $password
-	 * @return bool
+	 * @return array|bool
 	 */
 	public function login($usuario, $password)
 	{
+		// Buscamos el usuario.
 		$user = new Usuario;
-		/*if($user->traerPorUsuario($usuario)) {
+		if($user->getForUserName($usuario)) {
 			if(password_verify($password, $user->password)) {
-				$this->loguearUsuario($user);
-				return true;
+				$token = $this->generateToken($user);
+				return [
+					'token' => (string) $token,
+					'user' => [
+						'id' => $user->getID(),
+						'usuario' => $user->getEmail(),
+					]
+				];
 			} else {
 				return false;
 			}
 		} else {
 			return false;
-		}*/
+		}
 	}
 
+	/**
+	 * Genera un token de autenticación.
+	 *
+	 * @param Usuario $user
+	 * @return \Lcobucci\JWT\Token
+	 */
+	public function generateToken($user)
+	{
+		$builder = new Builder();
+
+		$builder->setIssuer(self::TOKEN_ISSUER);
+		$builder->set('id', $user->getID());
+
+		$signer = new Sha256();
+
+		$builder->sign($signer, self::SIGNER_KEY);
+		$token = $builder->getToken();
+		return $token;
+	}
+
+	/**
+	 * Retorna un array con los datos del token si es válido.
+	 * false de lo contrario.
+	 *
+	 * @param string $token
+	 * @return array|boolean
+	 */
+	public function isTokenValid($token)
+	{
+		if($token == "null" || empty($token)) {
+			return false;
+		}
+
+		$parser = new Parser;
+		$token = $parser->parse((string) $token);
+
+		$valData = new ValidationData;
+		$valData->setIssuer(self::TOKEN_ISSUER);
+
+		if(!$token->validate($valData)) {
+			return false;
+		}
+		$signer = new Sha256;
+
+		if(!$token->verify($signer, self::SIGNER_KEY)) {
+			return false;
+		}
+
+		return [
+			'id' => $token->getClaim('id')
+		];
+	}
+
+	/********** Estos métodos no los usamos para la API **********/
 	/** 
  	 * Marca como logueado al usuario en el sistema.
  	 *

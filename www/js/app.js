@@ -27,7 +27,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
 
   $stateProvider
 
-  .state('menu', {
+  /*.state('menu', {
     url: '/menu',
     abstract: true,
     templateUrl: 'template/menu.html'
@@ -81,7 +81,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     data: {
       requiresAuth: true
     }
-  })
+  })*/
 
   .state('menu.login', {
     url: '/login',
@@ -93,8 +93,8 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     }
   });
 
-  $urlRouterProvider.otherwise('/menu/publicaciones');
+  $urlRouterProvider.otherwise('/menu/login');
 
 })
 
-.constant('API_SERVER', 'http://localhost/TP2/api');
+.constant('API_SERVER', 'http://localhost/TP2/api/public');
