@@ -1,8 +1,8 @@
 <?php
-namespace TP2\Models;
+namespace RedSocial\Models;
 
 use Exception;
-use TP2\DB\DBConection;
+use RedSocial\DB\DBConection;
 
 class Perfil {
     protected $id;

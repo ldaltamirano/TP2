@@ -1,9 +1,9 @@
 <?php
-namespace TP2\Models;
+namespace RedSocial\Models;
 
 use Exception;
-use TP2\DB\DBConection;
-use TP2\\Models\Perfil;
+use RedSocial\DB\DBConection;
+use RedSocial\Models\Perfil;
 
 class Usuario {
     private $id;

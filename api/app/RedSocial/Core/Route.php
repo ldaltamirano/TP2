@@ -4,7 +4,7 @@ namespace Redsocial\Core;
 
 /**
  * Class Route
- * @package DaVinci\Core
+ * @package RedSocial\Core
  *
  * Se encarga de manejar todo lo relativo a las rutas.
  *

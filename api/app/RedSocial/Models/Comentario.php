@@ -1,8 +1,8 @@
 <?php
-namespace TP2\Models;
+namespace RedSocial\Models;
 
 use Exception;
-use Davinci\DBConection;
+use RedSocial\DBConection;
 
 class Comentario {
     private $id;
