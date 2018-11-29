@@ -1,0 +1,17 @@
+<ion-view title="Perfil">
+	<ion-content>
+		<div class="padding">
+                <p>Datos del usuario {{ user.nombre }} {{ user.apellido }}</p>
+			<ion-list>
+				<ion-item><b>Nombre:</b> {{ user.nombre }}</ion-item>
+				<ion-item><b>Apellido:</b> {{ user.apellido }}</ion-item>
+				<ion-item><b>Dni:</b> {{ user.dni }}</ion-item>
+				<ion-item><b>E-mail:</b> {{ user.perfil }}</ion-item>
+			</ion-list>
+        </div>
+
+        <div class="padding">
+			<a href="#/tab/editarUsuario" class="button button-block button-positive">Editar usuario</a>
+		</div>
+	</ion-content>
+</ion-view>

@@ -41,14 +41,14 @@ CREATE TABLE comentario(
 INSERT INTO perfil(PERFIL)
 VALUES ('Dueño'),('INQUILINO');
 
-INSERT INTO usuario (NOMBRE, APELLIDO, DNI, EMAIL, CLAVE, FKID_PERFIL)
-VALUES
-  ('Marco', 'Gonzalez', '12345678','marco.gonzalez@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220',1),
-  ('Maria', 'Gomez',  '12345678','margomez@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2),
-  ('Laura', 'Fernandez',  '12345678','fernandezL@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1),
-  ('Juan', 'Diaz',  '12345678','diaz.juan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2);
+  INSERT INTO usuario (NOMBRE, APELLIDO, DNI, EMAIL, CLAVE, PERFIL)
+  VALUES
+    ('Marco', 'Gonzalez', '12345678','marco.gonzalez@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220',1),
+    ('Maria', 'Gomez',  '12345678','margomez@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2),
+    ('Laura', 'Fernandez',  '12345678','fernandezL@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1),
+    ('Juan', 'Diaz',  '12345678','diaz.juan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2);
 
 INSERT INTO publicacion (IMG, DESCRIPCION, FECHA_PUBLICACION, FKID_USUARIO)
 VALUES
 ('img/depto.jpg','Departamento situado en Villa Urquita. Tres ambientes con cochera', '2018-06-16', 1),
-(NULL,'Busco departamento de un ambiente en zona belgrano', '2018-09-30', 2);
+(NULL,'Busco departamento de un ambiente en zona belgrano', '2018-09-30', 1);

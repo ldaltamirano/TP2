@@ -31,9 +31,15 @@ angular.module('redSocial.services')
 			}
 			//return token != null;
 		}
+		
+		function getToken() {
+			return token;
+		}
+
 		return {
 			login: login,
 			isLogged: isLogged,
+			getToken: getToken,
 		};
 	}
 ]);

@@ -5,22 +5,27 @@ use RedSocial\Auth\Auth;
 use RedSocial\Core\View;
 use RedSocial\Models\Usuario;
 
-class UsuarioController extends BaseController
+class UserController extends BaseController
 {
-	public function perfil()
+	public function obtenerUsuario()
 	{
 		$userId = $this->checkUserIsLogged();
-
 		$user = new Usuario;
-		$user->traerPorId($userId);
-
+		$res = $user->getForId($userId);
+		// var_dump($user);
+		// var_dump($userId);
+		// var_dump($res);
 		View::renderJson([
 			'status' => 1,
 			'data' => [
-				'id' 		=> $user->id,
-				'usuario' 	=> $user->usuario,
-				'email' 	=> $user->email,
-			]
+				'id' 		=> $user->getID(),
+				'nombre' 		=> $user->getNombre(),
+				'apellido' 		=> $user->getApellido(),
+				'email' 		=> $user->getEmail(),
+				'dni' 		=> $user->getDni(),
+				'pass' 		=> $user->getPass()				
+			],
+			'userId' => $userId
 		]);
 	}
 }

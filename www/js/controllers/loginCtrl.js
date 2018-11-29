@@ -17,7 +17,7 @@ angular.module('redSocial.controllers')
 						title: 'Éxito',
 						template: 'Bienvenido/a! Disfrutá de la app :)'
 					}).then(function() {
-						$state.go('tab.productos');
+						$state.go('tab.publicaciones');
 					});
 				} else {
 					$ionicPopup.alert({

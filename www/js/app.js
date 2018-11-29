@@ -1,6 +1,6 @@
 angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.services'])
 
-.run(function($ionicPlatform, $rootScope, Auth) {
+.run(function($ionicPlatform, $rootScope, $ionicPopup, $state, Auth) {
   $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -13,11 +13,20 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
   });
 
   $rootScope.$on('$stateChangeStart', function(event, toState){
-  
     if(toState.data != undefined && toState.data.requiresAuth == true) {
-
       if(!Auth.isLogged()) {
         event.preventDefault();
+        $ionicPopup.alert({
+          title: 'Acceso denegado',
+          template: 'Tenés que estar logueado para poder acceder a esta pantalla.'
+        }).then(function() {
+					$state.go('tab.login');
+				})
+      }
+    } else if(toState.data != undefined && toState.data.requiresGuest == true) {
+      if(Auth.isLogged()) {
+        event.preventDefault();
+        $state.go(toState.data.redirectTo);
       }
     }
   });
@@ -27,28 +36,28 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
 
   $stateProvider
 
-  .state('menu', {
-    url: '/menu',
+  .state('tab', {
+    url: '/tab',
     abstract: true,
-    templateUrl: 'template/menu.html'
+    templateUrl: 'template/tab.html'
   })
  
-  /*.state('menu.publicaciones', {
+  .state('tab.publicaciones', {
     url: '/publicaciones',
     views: {
-      'menu-publicaciones': {
-        templateUrl: 'template/publicaciones.html',
-        controller: 'publicacionesCtrl'
+      'tab-publicaciones': {
+        templateUrl: 'template/tab-publicaciones.html',
+        controller: 'PublicacionesCtrl'
       }
     },
     data: {
-      requiresAuth: true
+      //requiresAuth: true
     }
   })
-  .state('menu.crear_publicaciones', {
+  /*.state('tab.crear_publicaciones', {
     url: '/publicaciones/crear',
     views: {
-      'menu-publicacion': {
+      'tab-publicacion': {
         templateUrl: 'template/crear_publicacion.html',
         controller: 'crear_publicacionCtrl'
       }
@@ -57,10 +66,10 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
       requiresAuth: true
     }
   })
-    .state('menu.detalle', {
+    .state('tab.detalle', {
       url: '/publicaciones/:id',
       views: {
-        'menu-publicaciones': {
+        'tab-publicaciones': {
           templateUrl: 'template/detalle.html',
           controller: 'detalleCtrl'
         }
@@ -68,32 +77,52 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
       data: {
         requiresAuth: true
       }
-    })
-
-  .state('menu.perfil', {
-    url: '/perfil',
+    })*/
+  .state('tab.editarUsuario', {
+    url: '/editarUsuario',
     views: {
-      'menu-perfil': {
-        templateUrl: 'template/perfil.html',
-        controller: 'perfilCtrl'
+      'tab-usuario': {
+        templateUrl: 'template/tab-editarUsuario.html',
+        controller: 'EditarUsuarioCtrl'
+      }
+    },
+    data: {
+      //requiresAuth: true
+    }
+  })
+  .state('tab.usuario', {
+    url: '/usuario',
+    views: {
+      'tab-usuario': {
+        templateUrl: 'template/tab-usuario.html',
+        controller: 'UsuarioCtrl'
       }
     },
     data: {
       requiresAuth: true
     }
-  })*/
-
-  .state('menu.login', {
-    url: '/menu/login',
+  })
+  .state('tab.registro', {
+    url: '/registro',
     views: {
-      'menu-login': {
-        templateUrl: 'template/login.html',
+      'tab-perfil': {
+        templateUrl: 'template/tab-registro.html',
+        controller: 'RegistroCtrl'
+      }
+    }
+  })
+
+  .state('tab.login', {
+    url: '/login',
+    views: {
+      'tab-perfil': {
+        templateUrl: 'template/tab-login.html',
         controller: 'LoginCtrl'
       }
     }
   });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/tab/publicaciones');
 
 })
 

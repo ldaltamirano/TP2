@@ -2,26 +2,26 @@
 
 namespace RedSocial\Controllers;
 
-use RedSocial\Auth\Auth;
+use RedSocial\Auth\Register;
 use RedSocial\Core\App;
 use RedSocial\Core\View;
 
-class AuthController
+class RegisterController
 {
-    public function login()
+    public function registrar()
     {
     	$buffer = file_get_contents('php://input');
         $data = json_decode($buffer, true);
-        $auth = new Auth;
-        if($loginData = $auth->login($data['usuario'], SHA1($data['password']))) {
+        $register = new Register;
+        if($registerData = $register->registrar($data)) {
             View::renderJson([
                 'status' => 1,
-                'data' => $loginData
+                'rd' => $registerData,
             ]);
         } else {
             View::renderJson([
                 'status' => 0,
-                'msg' => "Usuario y/o password incorrectos.",
+                'rd' => $registerData,
             ]);
         }
     }

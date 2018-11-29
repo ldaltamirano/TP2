@@ -8,8 +8,7 @@ class Perfil {
     protected $id;
     protected $perfil;
 
-    public Perfil() {}
-    public Perfil($idPerfil) {
+    public function Perfil($idPerfil) {
         $db = DBConnection::getConnection();
 		$query = "SELECT ID_PERFIL, PERFIL FROM perfil
 				WHERE ID = ?";
@@ -18,7 +17,6 @@ class Perfil {
 		if($fila = $stmt->fetch()) {
 			$this->cargarDatosDeArray($fila);
         }
-        //TODO: Probar retornar nulo
     }
 
         	/**

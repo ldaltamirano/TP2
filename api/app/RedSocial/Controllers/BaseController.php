@@ -14,9 +14,9 @@ class BaseController
 			View::renderJson([
 				'status' => -1,
 				'msg' => 'Se requiere estar autenticado para realizar esta acción.'
-			]); // blah blah
+			]);
 			exit;
-		} // EZ
+		}
 
 		return $tokenData['id'];
 	}

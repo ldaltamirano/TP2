@@ -13,11 +13,11 @@ mysqli_set_charset($db, 'utf8');
 $input = file_get_contents('php://input');
 $datosPost = json_decode($input, true);
 
-if(isset($datosPost['EMAIL']) && isset($datosPost['CLAVE'])) {
+if(isset($datosPost['usuario']) && isset($datosPost['password'])) {
 
     $query = "SELECT * FROM usuario
-            WHERE EMAIL = '" . mysqli_real_escape_string($db, $datosPost['EMAIL']) . "'
-            AND CLAVE = '" . mysqli_real_escape_string($db, SHA1($datosPost['CLAVE'])) . "'";
+            WHERE EMAIL = '" . mysqli_real_escape_string($db, $datosPost['usuario']) . "'
+            AND CLAVE = '" . mysqli_real_escape_string($db, SHA1($datosPost['password'])) . "'";
 
     $res = mysqli_query($db, $query);
 

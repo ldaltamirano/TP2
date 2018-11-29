@@ -26,10 +26,10 @@ class Auth
 		// Buscamos el usuario.
 		$user = new Usuario;
 		if($user->getForUserName($usuario)) {
-			if(password_verify($password, $user->password)) {
+			if($password == $user->getPass()) {
 				$token = $this->generateToken($user);
 				return [
-					'token' => (string) $token,
+					'token' => (string) $token,	
 					'user' => [
 						'id' => $user->getID(),
 						'usuario' => $user->getEmail(),
@@ -70,7 +70,7 @@ class Auth
 	 * @param string $token
 	 * @return array|boolean
 	 */
-	public function isTokenValid($token)
+	public static function isTokenValid($token)
 	{
 		if($token == "null" || empty($token)) {
 			return false;

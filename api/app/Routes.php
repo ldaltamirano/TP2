@@ -9,6 +9,8 @@
 use Redsocial\Core\Route;
 
 Route::add('POST', '/login', 'AuthController@login');
+Route::add('POST', '/registrar', 'RegisterController@registrar');
+Route::add('GET', '/usuario', 'UserController@obtenerUsuario');
 //Route::add('GET', '/publicaciones', 'PublicacionesController@todos');
 //Route::add('GET', '/publicaciones/{id}', 'PublicacionesController@detalle');
 
