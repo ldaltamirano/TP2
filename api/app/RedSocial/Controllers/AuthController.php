@@ -22,6 +22,7 @@ class AuthController
             View::renderJson([
                 'status' => 0,
                 'msg' => "Usuario y/o password incorrectos.",
+                'data' => $loginData
             ]);
         }
     }

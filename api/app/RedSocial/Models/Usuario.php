@@ -46,8 +46,7 @@ class Usuario {
 
     public function getForUserName($userName) {
         $db = DBConnection::getConnection();
-		$query = "SELECT ID_USUARIO, NOMBRE, APELLIDO, EMAIL,DNI, CLAVE, PERFIL FROM usuario
-				WHERE EMAIL = ?";
+		$query = "SELECT ID_USUARIO, NOMBRE, APELLIDO, EMAIL,DNI, CLAVE, PERFIL FROM usuario WHERE EMAIL = ?";
 		$stmt = $db->prepare($query);
 		$stmt->execute([$userName]);
 		if($fila = $stmt->fetch()) {

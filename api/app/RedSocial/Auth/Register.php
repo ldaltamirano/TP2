@@ -18,10 +18,10 @@ class Register
             return false;
         } else {
             if($error = $user->crear($usuario)) {
-				return $error;
+				return true;
 				//return true;
 			} else {
-				return $error;
+				return "false2";
 			}
         }
 	}

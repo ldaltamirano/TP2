@@ -25,7 +25,7 @@ class Auth
 	{
 		// Buscamos el usuario.
 		$user = new Usuario;
-		if($user->getForUserName($usuario)) {
+		if($res = $user->getForUserName($usuario)) {
 			if($password == $user->getPass()) {
 				$token = $this->generateToken($user);
 				return [
@@ -36,10 +36,10 @@ class Auth
 					]
 				];
 			} else {
-				return false;
+				return [ $res ];
 			}
 		} else {
-			return false;
+			return "false2";
 		}
 	}
 

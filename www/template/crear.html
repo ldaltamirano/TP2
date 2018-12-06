@@ -1,0 +1,30 @@
+<ion-view view-title="Nueva Publicacion">
+	<ion-content>
+		<div class="padding">
+            <h2>Nueva Publicacion</h2>
+            <p>Crea tu nueva publicacion</p>
+		</div>
+		<form ng-submit="crear(publicacion)">
+			<div class="list">
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Fecha:</span>
+                    <input type="text" ng-model="publicacion.fecha">
+                </label>
+				<label class="item item-input item-stacked-label">
+					<span class="input-label">Titulo:</span>
+					<input type="text" ng-model="publicacion.titulo">
+				</label>
+				<label class="item item-input item-stacked-label">
+                    <span class="input-label">Descripcion:</span>
+                    <textarea name="descripcion" id="descripcion" cols="30" rows="10" ng-model="publicacion.descripcion"></textarea>
+                </label>
+                <label class="item item-input item-stacked-label">
+					<span class="input-label">Autor:</span>
+					<input type="text" ng-model="publicacion.creadoPorNombre" value="{{ publicacion.creadoPorNombre }}">
+				</label>
+			</div>
+			<button class="button button-block button-positive">Publicar</button> 
+		</form>
+	</ion-content>
+</ion-view>
+

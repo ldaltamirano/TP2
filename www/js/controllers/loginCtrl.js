@@ -15,9 +15,9 @@ angular.module('redSocial.controllers')
 				if(exito) {
 					$ionicPopup.alert({
 						title: 'Éxito',
-						template: 'Bienvenido/a! Disfrutá de la app :)'
+						template: 'Bienvenido!!!'
 					}).then(function() {
-						$state.go('tab.publicaciones');
+						$state.go('tab.usuario');
 					});
 				} else {
 					$ionicPopup.alert({

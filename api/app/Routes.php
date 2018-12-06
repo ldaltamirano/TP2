@@ -11,9 +11,8 @@ use Redsocial\Core\Route;
 Route::add('POST', '/login', 'AuthController@login');
 Route::add('POST', '/registrar', 'RegisterController@registrar');
 Route::add('GET', '/usuario', 'UserController@obtenerUsuario');
-//Route::add('GET', '/publicaciones', 'PublicacionesController@todos');
-//Route::add('GET', '/publicaciones/{id}', 'PublicacionesController@detalle');
-
-//Route::add('POST', '/publicaciones', 'PublicacionesController@crear');
-//Route::add('PUT', '/publicaciones/{id}', 'publicacionesController@editar');
-//Route::add('DELETE', '/publicaciones/{id}', 'publicacionesController@eliminar');
+Route::add('GET', '/publicacion', 'PublicacionController@datos');
+Route::add('GET', '/publicacion/{id}', 'PublicacionController@detalle');
+Route::add('POST', '/publicacion', 'PublicacionController@crear');
+Route::add('PUT', '/publicacion/{id}', 'PublicacionController@editar');
+Route::add('DELETE', '/publicacion/{id}', 'PublicacionController@eliminar');

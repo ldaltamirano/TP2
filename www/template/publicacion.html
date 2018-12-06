@@ -1,0 +1,16 @@
+<ion-view view-title="Publicacion">
+	<ion-content>
+		<div class="padding">
+			<h2>Publicaciones</h2>
+		</div>
+		<ion-list ng-repeat="publicacion in publicaciones track by $index" >
+			<ion-item href="#/tab/publicacion/{{ publicacion.id }}">
+				<sub>{{ publicacion.fecha }} || {{ publicacion.creadoPor }}</sub>
+				<h3>{{publicacion.titulo}}</h3>
+			</ion-item>
+			<button class="button button-icon" ng-submit="editar(id)">Editar</button>
+			<button class="button button-icon" ng-submit="eliminar(id)">Eliminar</button>
+		</ion-list>
+	</ion-content>
+</ion-view>
+

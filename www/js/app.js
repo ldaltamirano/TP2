@@ -42,42 +42,66 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     templateUrl: 'template/tab.html'
   })
  
-  .state('tab.publicaciones', {
-    url: '/publicaciones',
+  .state('tab.publicacion', {
+    url: '/publicacion',
     views: {
-      'tab-publicaciones': {
-        templateUrl: 'template/tab-publicaciones.html',
-        controller: 'PublicacionesCtrl'
+      'tab-publicacion': {
+        templateUrl: 'template/publicacion.html',
+        controller: 'PublicacionCtrl'
       }
     },
     data: {
       //requiresAuth: true
     }
   })
-  /*.state('tab.crear_publicaciones', {
-    url: '/publicaciones/crear',
+  .state('tab.crear', {
+    url: '/publicacion/crear',
     views: {
-      'tab-publicacion': {
-        templateUrl: 'template/crear_publicacion.html',
-        controller: 'crear_publicacionCtrl'
+      'tab-crear': {
+        templateUrl: 'template/crear.html',
+        controller: 'CrearCtrl'
       }
     },
     data: {
-      requiresAuth: true
+      //requiresAuth: true
     }
   })
     .state('tab.detalle', {
-      url: '/publicaciones/:id',
+      url: '/publicacion/:id',
       views: {
-        'tab-publicaciones': {
+        'tab-publicacion': {
           templateUrl: 'template/detalle.html',
-          controller: 'detalleCtrl'
+          controller: 'DetalleCtrl'
         }
       },
       data: {
-        requiresAuth: true
+        //requiresAuth: true
       }
-    })*/
+    })
+    .state('tab.editar', {
+      url: '/publicacion/:id',
+      views: {
+        'tab-publicacion': {
+          templateUrl: 'template/crear.html',
+          controller: 'EditarCtrl'
+        }
+      },
+      data: {
+        //requiresAuth: true
+      }
+    })
+    .state('tab.eliminar', {
+      url: '/publicacion/:id',
+      views: {
+        'tab-publicacion': {
+          templateUrl: 'template/eliminar.html',
+          controller: 'EliminarCtrl'
+        }
+      },
+      data: {
+        //requiresAuth: true
+      }
+    })
   .state('tab.editarUsuario', {
     url: '/editarUsuario',
     views: {
@@ -122,7 +146,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     }
   });
 
-  $urlRouterProvider.otherwise('/tab/publicaciones');
+  $urlRouterProvider.otherwise('/tab/usuario');
 
 })
 

@@ -13,14 +13,14 @@ CREATE TABLE usuario(
   APELLIDO varchar(20),
   DNI int(8),
   EMAIL varchar(100) UNIQUE NOT NULL,
-  CLAVE char(40) NOT NULL,
-  FKID_PERFIL int(2) UNSIGNED NOT NULL,
-  FOREIGN KEY (FKID_PERFIL) REFERENCES perfil(ID_PERFIL) ON DELETE RESTRICT ON UPDATE CASCADE
+  CLAVE varchar(40) NOT NULL,
+  PERFIL int(2) UNSIGNED NOT NULL,
+  FOREIGN KEY (PERFIL) REFERENCES perfil(ID_PERFIL) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=innoDB;
 
 CREATE TABLE publicacion(
   ID_PUBLICACION int(2) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  IMG varchar(50),
+  TITULO varchar (50),
   DESCRIPCION text NOT NULL,
   FECHA_PUBLICACION date,
   FKID_USUARIO int(2) UNSIGNED NOT NULL,
@@ -48,7 +48,7 @@ VALUES ('Dueño'),('INQUILINO');
     ('Laura', 'Fernandez',  '12345678','fernandezL@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1),
     ('Juan', 'Diaz',  '12345678','diaz.juan@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2);
 
-INSERT INTO publicacion (IMG, DESCRIPCION, FECHA_PUBLICACION, FKID_USUARIO)
+INSERT INTO publicacion (TITULO,DESCRIPCION, FECHA_PUBLICACION, FKID_USUARIO)
 VALUES
-('img/depto.jpg','Departamento situado en Villa Urquita. Tres ambientes con cochera', '2018-06-16', 1),
-(NULL,'Busco departamento de un ambiente en zona belgrano', '2018-09-30', 1);
+('Departamento Villa Urquiza','Departamento situado en Villa Urquita. Tres ambientes con cochera', '2018-06-16', 1),
+('Busco Departamento','Busco departamento de un ambiente en zona belgrano', '2018-09-30', 2);
