@@ -75,7 +75,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
         }
       },
       data: {
-        //requiresAuth: true
+        requiresAuth: true
       }
     })
     .state('tab.editar', {
@@ -87,7 +87,7 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
         }
       },
       data: {
-        //requiresAuth: true
+        requiresAuth: true
       }
     })
     .state('tab.eliminar', {

@@ -37,15 +37,7 @@ class Publicacion implements JsonSerializable {
      * @devuelve array 
      */
     public function datos(){
-        /*Me conecto a la base de datos*/
         $db = DBConnection::getConnection();
-        /*Realizo la consulta
-        SELECT * FROM publicacion
-                  INNER JOIN comentario
-                    ON publicacion.FKID_USUARIO = comentario.FKID_USUARIO
-                  INNER JOIN usuario
-                    ON publicacion.FKID_USUARIO = usuario.ID_USUARIO
-                  ORDER BY publicacion.ID_PUBLICACION*/
         $query = "SELECT * FROM publicacion
                   INNER JOIN usuario
                     ON publicacion.FKID_USUARIO = usuario.ID_USUARIO
@@ -85,8 +77,7 @@ class Publicacion implements JsonSerializable {
         $this->id = $fila['ID_PUBLICACION'];
         $this->fecha = $fila['FECHA_PUBLICACION'];
         $this->creadoPor = $fila['FKID_USUARIO'];
-        // $this->titulo = $fila['TITULO'];
-        // $this->titulo = $fila['TITULO'] ?? null;
+        $this->titulo = $fila['TITULO'];
         $this->descripcion = $fila['DESCRIPCION'];
     }
     /**
@@ -95,25 +86,22 @@ class Publicacion implements JsonSerializable {
      */
     public function crear($fila){
         $db = DBConnection::getConnection();
-        $query = "INSERT INTO publicacion (FECHA_PUBLICACION, FKID_USUARIO /*, TITULO*/, DESCRIPCION)
-                VALUES (:FECHA_PUBLICACION, :FKID_USUARIO /*, :TITULO*/, :DESCRIPCION)";
+        $query = "INSERT INTO publicacion (FECHA_PUBLICACION, FKID_USUARIO, TITULO, DESCRIPCION)
+                VALUES (:FECHA_PUBLICACION, :FKID_USUARIO, :TITULO, :DESCRIPCION)";
         $stmt = $db->prepare($query);
         $exito = $stmt->execute([
             'FECHA_PUBLICACION' => $fila['FECHA_PUBLICACION'],
             'FKID_USUARIO' => $fila['FKID_USUARIO'],
-            // 'TITULO' => $fila['titulo'],
+            'TITULO' => $fila['titulo'],
             'DESCRIPCION' => $fila['DESCRIPCION'],
         ]);
-
-        // print_r($stmt->errorInfo());
-        
-        if($exito){
-            $fila['ID_PUBLICACION'] = $db->lastInsertId();
-            $this->cargarDatos($fila);
+        if(!$exito){
+            return false; 
         } else {
-            throw new Exception('Error al insertar el registro.');
+            return true;
         }
     }
+
     /**
      * Edita publicaciones ya existentes
      * @param int $id
@@ -125,13 +113,17 @@ class Publicacion implements JsonSerializable {
                   WHERE ID_PUBLICACION=?';
         $stmt  = $db->prepare($query);
         $exito = $stmt->execute([
-           /* $this->imagen,*/
             $this->creadoPor,
             $this->titulo,
             $this->descripcion,
             $this->fecha,
             $this->id
         ]);
+        if(!$exito) {
+            return false;
+        } else {
+            return true;
+        }
 	}
     /**
      * Elimina publicaciones en la base de datos
@@ -143,6 +135,11 @@ class Publicacion implements JsonSerializable {
         $query = "DELETE FROM publicacion 
                   WHERE publicacion.ID_PUBLICACION=$id";
         $stmt = $db->prepare($query);
-        $stmt->execute([$id]);
+        $exito = $stmt->execute([$id]);
+        if(!$exito) {
+            return false;
+        } else {
+            return true;
+        }
 	}
 }

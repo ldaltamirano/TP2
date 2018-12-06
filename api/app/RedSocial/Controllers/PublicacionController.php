@@ -29,18 +29,24 @@ class PublicacionController extends BaseController{
 
 		try {
 			$publicacion = new Publicacion;
-			$publicacion->crear([
+			$exito = $publicacion->crear([
 				'FECHA_PUBLICACION' => $postData['fecha'],
 				'FKID_USUARIO' => $userId,
 				'TITULO' => $postData['titulo'],
 				'DESCRIPCION' => $postData['descripcion'],
 			]);
-
-			View::renderJson([
-				'status' => 1,
-				'msg' => 'Publicado',
-				'data' => $postData
-			]);
+			if(!$exito) {
+				View::renderJson([
+					'status' => 1,
+					'msg' => 'Publicado',
+					'data' => $postData
+				]);
+			} else {
+				View::renderJson([
+					'status' => 0,
+					'msg' => 'Oops! Ocurrió un problema al subir la publicacion. Intentelo mas tarde.',
+				]);
+			}
 		} catch(Exception $e) {
 			View::renderJson([
 				'status' => 0,
