@@ -54,6 +54,7 @@ class PublicacionController extends BaseController{
 	}
 
 	public function editar(){
+		$userId = $this->checkUserIsLogged();
 		$params = Route::getUrlParameters();
 		$id = $params['id'];
 		$input = file_get_contents('php://input');
@@ -63,16 +64,16 @@ class PublicacionController extends BaseController{
 			$publicacion = new Publicacion;
 			$exito = $publicacion->editar([
 				'id_publicacion' => $id,
-				'creadoPor' => $postData['FKID_USUARIO'],
-				'titulo' => $postData['TITULO'],
-				'descripcion' => $postData['DESCRIPCION'],
-				'fecha' => $postData['FECHA_PUBLICACION'],
+				'creadoPor' => $userId ,
+				'titulo' => $postData['titulo'],
+				'descripcion' => $postData['descripcion'],
+				'fecha' => $postData['fecha'],
 			]);
 			if($exito) {
 				View::renderJson([
 					'status' => 1,
 					'msg' => 'Se edito.',
-					'data' => $producto
+					'data' => $publicacion
 				]);
 			} else {
 				throw new Exception;

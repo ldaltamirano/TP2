@@ -8,7 +8,6 @@ angular.module('redSocial.controllers')
 	function($scope, $state, $ionicPopup, Publicacion, Usuario) {
 		Usuario.getLoggedUser().then(function(resp) {
 			$scope.publicacion = {
-				fecha: null,
 				creadoPor: null,
 				creadoPorNombre: null,
 				titulo: null,

@@ -8,8 +8,8 @@
 				<sub>{{ publicacion.fecha }} || {{ publicacion.creadoPor }}</sub>
 				<h3>{{publicacion.titulo}}</h3>
 			</ion-item>
-			<button class="button button-icon" ng-submit="editar(id)">Editar</button>
-			<button class="button button-icon" ng-submit="eliminar(id)">Eliminar</button>
+			<a href="#/tab/publicacion/{{publicacion.id}}">Editar</a>
+			<button class="button button-icon" ng-submit="eliminar(publicacion.id)">Eliminar</button>
 		</ion-list>
 	</ion-content>
 </ion-view>
