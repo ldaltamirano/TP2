@@ -6,8 +6,6 @@ angular.module('redSocial.controllers')
 	function($scope, $stateParams, Publicacion){
 		$scope.publicaciones = {
 			id: null,
-			fecha: null,
-			creadoPor: null,
 			titulo: null,
 			descripcion: null
 		};

@@ -92,7 +92,7 @@ class Publicacion implements JsonSerializable {
         $exito = $stmt->execute([
             'FECHA_PUBLICACION' => $fila['FECHA_PUBLICACION'],
             'FKID_USUARIO' => $fila['FKID_USUARIO'],
-            'TITULO' => $fila['titulo'],
+            'TITULO' => $fila['TITULO'],
             'DESCRIPCION' => $fila['DESCRIPCION'],
         ]);
         if(!$exito){
