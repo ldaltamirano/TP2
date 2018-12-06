@@ -1,14 +1,21 @@
 <ion-view view-title="Detalle">
-	<ion-content>
-		<div class="padding">
-			<h2>{{publicaciones.titulo}}</h2>
-	</div>
-		<ion-list>
-			<ion-item>
-				<sub>{{ publicaciones.fecha }}</sub>
-                <h3>{{ publicaciones.creadoPor }}</h3>
-                <p>{{publicaciones.descripcion}}</p>
-			</ion-item>
-		</ion-list>
-	</ion-content>
+		<ion-content>
+				<div class="padding">
+					<h2>Editar {{publicacion.titulo}}</h2>
+				</div>
+		
+				<form ng-submit="editar(publicacion)">
+					<div class="list">
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Título</span>
+							<input type="text" ng-model="publicacion.titulo">
+						</label>
+						<label class="item item-input item-stacked-label">
+							<span class="input-label">Descripción</span>
+							<textarea ng-model="publicacion.descripcion"></textarea>
+						</label>
+					</div>
+					<button class="button button-block button-positive">Editar Publicación</button>
+				</form>
+			</ion-content>
 </ion-view>
