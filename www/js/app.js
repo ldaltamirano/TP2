@@ -58,12 +58,12 @@ angular.module('redSocial', ['ionic', 'redSocial.controllers', 'redSocial.servic
     url: '/publicacion/crear',
     views: {
       'tab-crear': {
-        templateUrl: 'template/crear.html',
+        templateUrl: 'template/tab-crear.html',
         controller: 'CrearCtrl'
       }
     },
     data: {
-      //requiresAuth: true
+      requiresAuth: true
     }
   })
     .state('tab.detalle', {

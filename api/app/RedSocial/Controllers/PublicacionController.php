@@ -1,6 +1,7 @@
 <?php
 namespace RedSocial\Controllers;
 
+use Exception;
 use RedSocial\Models\Publicacion;
 use RedSocial\Core\View;
 use RedSocial\Core\Route;
@@ -35,17 +36,14 @@ class PublicacionController extends BaseController{
 				'TITULO' => $postData['titulo'],
 				'DESCRIPCION' => $postData['descripcion'],
 			]);
-			if(!$exito) {
+			if($exito) {
 				View::renderJson([
 					'status' => 1,
 					'msg' => 'Publicado',
 					'data' => $postData
 				]);
 			} else {
-				View::renderJson([
-					'status' => 0,
-					'msg' => 'Oops! Ocurrió un problema al subir la publicacion. Intentelo mas tarde.',
-				]);
+				throw new Exception;
 			}
 		} catch(Exception $e) {
 			View::renderJson([
@@ -63,18 +61,22 @@ class PublicacionController extends BaseController{
 
 		try {
 			$publicacion = new Publicacion;
-			$publicacion->editar([
+			$exito = $publicacion->editar([
 				'id_publicacion' => $id,
 				'creadoPor' => $postData['FKID_USUARIO'],
 				'titulo' => $postData['TITULO'],
 				'descripcion' => $postData['DESCRIPCION'],
 				'fecha' => $postData['FECHA_PUBLICACION'],
 			]);
-			View::renderJson([
-				'status' => 1,
-				'msg' => 'Se edito.',
-				'data' => $producto
-			]);
+			if($exito) {
+				View::renderJson([
+					'status' => 1,
+					'msg' => 'Se edito.',
+					'data' => $producto
+				]);
+			} else {
+				throw new Exception;
+			}
 		} catch(Exception $e) {
 			View::renderJson([
 				'status' => 0,
@@ -89,12 +91,15 @@ class PublicacionController extends BaseController{
 
 		try {
 			$publicacion = new Publicacion;
-			$publicacion->eliminar($id);
-
-			View::renderJson([
-				'status' => 1,
-				'msg' => 'Se elimino.',
-			]);
+			$exito = $publicacion->eliminar($id);
+			if($exito) {
+				View::renderJson([
+					'status' => 1,
+					'msg' => 'Se elimino la publicación.',
+				]);
+			} else {
+				throw new Exception;
+			}
 		} catch(Exception $e) {
 			View::renderJson([
 				'status' => 0,

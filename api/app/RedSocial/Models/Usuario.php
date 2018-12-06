@@ -19,7 +19,7 @@ class Usuario {
         $this->apellido = $usuario['apellido'];
         $this->dni = $usuario['dni'];
         $this->email = $usuario['email'];
-        $this->pass = $usuario['password'];
+        $this->pass = SHA1($usuario['password']);
         $this->perfil = $usuario['perfil'];
 
         $db = DBConnection::getConnection();

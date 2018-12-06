@@ -36,10 +36,10 @@ class Auth
 					]
 				];
 			} else {
-				return [ $res ];
+				return false;
 			}
 		} else {
-			return "false2";
+			return false;
 		}
 	}
 
